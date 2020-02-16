@@ -10,12 +10,10 @@ const Addportal = () => {
 
 	// Data
 	const usersData = [
-		{ id: '1', name: 'Maggie noodles', type: 'snack', ingredients: 'maggie,tastemaker,water', important:'water level', procedure:'' },
-		{ id: '2', name: 'tea', type: 'drink', ingredients: 'milk,teapowder,water', important:'watch at tea boilig point', procedure:'' },
-		{ id: '3', name: 'omelette', type: 'breakfast', ingredients: 'egg,salt,pepper', important:'sunny side up', procedure:'' },
+		{ id: '1', name: 'tea', type: 'drink', ingredients: 'milk,teapowder,water', important:'watch at tea boilig point', procedure:'',author:'' },
 	]
 
-	const initialFormState = { id: '', name: '', type: '', ingredients: '', important:'', procedure:'' }
+	const initialFormState = { id: '', name: '', type: '', url:'', desc:'', ingredients: '', important:'', procedure:'', author:'' }
 
 	// Setting state
 	const [ users, setUsers ] = useState(usersData)
@@ -37,7 +35,7 @@ const Addportal = () => {
 		setUsers([ ...users, user ])
 
 		const db = firebase.firestore();
-        db.collection("recipes").add({ id: user.id, name: user.name, type:user.type, ingredients: user.ingredients, important: user.important, procedure: user.procedure  });
+        db.collection("recipes").add({ id: user.id, name: user.name, type:user.type, url:user.url, desc:user.desc, ingredients: user.ingredients, important: user.important, procedure: user.procedure, author:user.author  });
 	}
 
 	const deleteUser = id => {
@@ -57,14 +55,14 @@ const Addportal = () => {
 		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
 
 		const db = firebase.firestore()
-        db.collection('recipes').doc(updatedUser.id).set({...updatedUser, name: updatedUser.name, type: updatedUser.type, ingredients: updatedUser.ingredients, important: updatedUser.important, procedure: updatedUser.procedure })
+        db.collection('recipes').doc(updatedUser.id).set({...updatedUser, name: updatedUser.name, type: updatedUser.type, url: updatedUser.url, desc: updatedUser.desc, ingredients: updatedUser.ingredients, important: updatedUser.important, procedure: updatedUser.procedure, author:updatedUser.author })
 
 
 	}
 
 	const editRow = user => {
 		setEditing(true)
-		setCurrentUser({ id: user.id, name: user.name, type:user.type, ingredients: user.ingredients, important: user.important, procedure: user.procedure })
+		setCurrentUser({ id: user.id, name: user.name, type:user.type, url:user.url, desc:user.desc, ingredients: user.ingredients, important: user.important, procedure: user.procedure, author:user.author })
 	}
 
 	document.title="Add Recipes-Chef's Library";

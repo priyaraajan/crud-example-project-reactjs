@@ -3,6 +3,8 @@ import firebase from './config/fire';
 import {Container} from 'react-bootstrap'
 import './App.css'
 import {Animated} from "react-animated-css";
+import Image from 'react-bootstrap/Image'
+
 
 export default class displayrecipe extends Component {
     constructor(props) {
@@ -38,6 +40,8 @@ export default class displayrecipe extends Component {
                 <div className="recdata"> 
                 
                   <h2>{this.state.user.name}</h2>
+        <small>it can be taken as : {this.state.user.type}</small><br/>
+        <Image src={this.state.user.url} fluid alt="image of the food" id="recimg"/>
                 <h3>
                   Ingredients:
                 </h3>
@@ -50,6 +54,7 @@ export default class displayrecipe extends Component {
                 <p>
                    {this.state.user.procedure}
                 </p>
+                  <h5>This recipe was written by:{this.state.user.author}</h5>
                 </div>
                 </Container>
                 </Animated>

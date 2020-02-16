@@ -33,8 +33,7 @@ const [users,setUsers]=React.useState([])
                     <Card.Title>{user.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{user.type}</Card.Subtitle>
                             <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
+                            {user.desc}
                             </Card.Text>
                             <Card.Link key={id} ><Link to={`/recipe/${id}`}>View recipe</Link></Card.Link>
                         </Card.Body>
